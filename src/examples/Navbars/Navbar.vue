@@ -31,15 +31,16 @@
         </div>
         <ul class="navbar-nav justify-content-end">
           <li>
-            <a
+            <router-link
               class="btn bg-gradient-success mt-0 mb-0 w-100"
               href=""
               type="button"
+              :to="{ name: 'Welcome' }"
               >
               <span class="mx-1"
               ><i class="fas fa-wallet" aria-hidden="true" style="font-size:17px"></i
               ></span>
-              CONNECT WALLET</a
+              CONNECT WALLET</router-link
             >
           </li>
           <!--<li class="nav-item d-flex align-items-center">

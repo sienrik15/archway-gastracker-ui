@@ -1,110 +1,14 @@
-<template>
-  <div
-    class="w-auto h-auto collapse navbar-collapse max-height-vh-100 h-100"
-    id="sidenav-collapse-main"
-  >
-    <ul class="navbar-nav">
-      <!--<li class="nav-item">
-        <sidenav-collapse navText="Dashboard" :to="{ name: 'Dashboard' }">
-          <template #icon>
-            <shop />
-          </template>
-        </sidenav-collapse>
-      </li>-->
-      <li class="nav-item">
-        <sidenav-collapse navText="Overview" :to="{ name: 'Overview' }">
-          <template #icon>
-            <shop />
-          </template>
-        </sidenav-collapse>
-      </li>
-
-      <li class="nav-item">
-        <sidenav-collapse navText="Rewards" :to="{ name: 'Rewards' }">
-          <template #icon>
-            <shop />
-          </template>
-        </sidenav-collapse>
-      </li>
-      <!--<li class="nav-item">
-        <sidenav-collapse navText="Tables" :to="{ name: 'Tables' }">
-          <template #icon>
-            <office />
-          </template>
-        </sidenav-collapse>
-      </li>
-      <li class="nav-item">
-        <sidenav-collapse navText="Billing" :to="{ name: 'Billing' }">
-          <template #icon>
-            <credit-card />
-          </template>
-        </sidenav-collapse>
-      </li>
-
-      <li class="nav-item">
-        <sidenav-collapse
-          navText="Virtual Reality"
-          :to="{ name: 'Virtual Reality' }"
-        >
-          <template #icon>
-            <box3d />
-          </template>
-        </sidenav-collapse>
-      </li>
-      <li class="nav-item">
-        <sidenav-collapse navText="RTL" :to="{ name: 'Rtl' }">
-          <template #icon>
-            <settings />
-          </template>
-        </sidenav-collapse>
-      </li>
-      <li class="mt-3 nav-item">
-        <h6
-          class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6"
-          :class="this.$store.state.isRTL ? 'me-4' : 'ms-2'"
-        >
-          PAGES
-        </h6>
-      </li>
-      <li class="nav-item">
-        <sidenav-collapse navText="Profile" :to="{ name: 'Profile' }">
-          <template #icon>
-            <customer-support />
-          </template>
-        </sidenav-collapse>
-      </li>
-      <li class="nav-item">
-        <sidenav-collapse navText="Sign In" :to="{ name: 'Sign In' }">
-          <template #icon>
-            <document />
-          </template>
-        </sidenav-collapse>
-      </li>
-      <li class="nav-item">
-        <sidenav-collapse navText="Sign Up" :to="{ name: 'Sign Up' }">
-          <template #icon>
-            <spaceship />
-          </template>
-        </sidenav-collapse>
-      </li>-->
-    </ul>
-  </div>
-  <!--<div class="pt-3 mx-3 mt-3 sidenav-footer">
-    <sidenav-card
-      :class="cardBg"
-      textPrimary="Need Help?"
-      textSecondary="Please check our docs"
-      route=""
-      label="Documentation"
-      icon="ni ni-diamond"
-    />
-    <a
-      class="btn bg-gradient-success mt-4 w-100"
-      href=""
-      type="button"
-      >Upgrade to pro</a
-    >
-  </div>-->
+<template lang="pug">
+#sidenav-collapse-main.w-auto.h-auto.collapse.navbar-collapse.max-height-vh-100.h-100
+  ul.navbar-nav
+    li.nav-item
+      sidenav-collapse(navText='Overview' :to="{ name: 'Overview' }")
+        template(#icon='')
+          shop
+    li.nav-item
+      sidenav-collapse(navText='Rewards' :to="{ name: 'Rewards' }")
+        template(#icon='')
+          shop
 </template>
 <script>
 import SidenavCollapse from "./SidenavCollapse.vue";

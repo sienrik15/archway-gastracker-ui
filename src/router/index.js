@@ -57,14 +57,19 @@ const routes = [
     component: Rtl,
   },
   {
-    path: "/sign-in",
-    name: "Sign In",
+    path: "/welcome",
+    name: "Welcome",
     component: SignIn,
   },
   {
     path: "/sign-up",
     name: "Sign Up",
     component: SignUp,
+  },
+  { 
+    path: "/:pathMatch(.*)*", 
+    name: "/",
+    redirect: "/overview" 
   },
 ];
 
