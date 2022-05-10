@@ -13,28 +13,31 @@ import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client/core"
 import { DefaultApolloClient } from "@vue/apollo-composable"
 
 
-const getHeaders = () => {
+/*const getHeaders = () => {
     const headers = {}
     const token = window.localStorage.getItem("apollo-token")
     if (token) {
         headers["Authorization"] = `Bearer ${token}`
     }
     return headers
-}
+}*/
 
 // Create an http link:
+// 
+// http://135.181.153.131:8080/v1/graphql
+// https://g-archway.giansalex.dev/v1/graphql
 const httpLink = new HttpLink({
-    uri: "http://135.181.153.131:8080/v1/graphql",
+    uri: "https://g-archway.giansalex.dev/v1/graphql",
     fetch,
-    headers: getHeaders()
+    //headers: getHeaders()
 })
 
 // Create the apollo client
 const apolloClient = new ApolloClient({
     link: httpLink,
-    cache: new InMemoryCache({
+    /*cache: new InMemoryCache({
         appTypename: true
-    }),
+    }),*/
 })
 
 
