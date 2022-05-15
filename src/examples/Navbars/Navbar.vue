@@ -30,7 +30,7 @@
           </div>
         </div>
         <ul class="navbar-nav justify-content-end">
-          <li>
+          <!--<li>
             <router-link
               class="btn bg-gradient-success mt-0 mb-0 w-100"
               href=""
@@ -42,7 +42,7 @@
               ></span>
               CONNECT WALLET</router-link
             >
-          </li>
+          </li>-->
           <!--<li class="nav-item d-flex align-items-center">
             <router-link
               :to="{ name: 'Sign In' }"

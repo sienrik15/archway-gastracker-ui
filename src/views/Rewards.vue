@@ -31,7 +31,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(item, index) in contracts_rewards" :key="index">
+                            <tr v-for="(item, index) in block_rewards" :key="index">
                                 <td>
                                     <div class="d-flex px-2 py-1">
                                     <div class="d-flex flex-column justify-content-center">
@@ -74,23 +74,23 @@
   </div>
 </template>
 <script>
-import { useQuery, useResult } from "@vue/apollo-composable"
 import { BLOCK_REWARDS } from "../graphql-operations/block_rewards"
 export default {
     name:"Rewards",
     data(){
         return {
-            contracts_rewards:[],      
+            block_rewards:[],      
         };
     },
     mounted(){
-        const privateTodosQuery = useQuery(BLOCK_REWARDS)
+        /*const privateTodosQuery = useQuery(BLOCK_REWARDS)
         const privateTodos = useResult(privateTodosQuery.result, [], (data) => data)
         this.contracts_rewards = privateTodos.value.block_rewards
-        console.log(this.contracts_rewards)
+        console.log(this.contracts_rewards)*/
     },
-    components: {
-        
-    }
+    apollo: {
+    // Apollo specific options
+    block_rewards: BLOCK_REWARDS
+  },
 }
 </script>          

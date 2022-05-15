@@ -85,28 +85,33 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(item, index) in contracts_rewards" :key="index">
+                            <tr v-for="(item, index) in total_rewads" :key="index">
                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <h6 class="mb-0 text-sm">{{item.contract}}</h6>
-                                        <!--<p class="text-xs text-secondary mb-0">
-                                        laurent@creative-tim.com
-                                        </p>-->
-                                    </div>
-                                    </div>
+                                    <router-link :to="{ name: 'Contract', params: { id: item.contract }}">
+                                      <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">{{item.contract}}</h6>
+                                            <!--<p class="text-xs text-secondary mb-0">
+                                            laurent@creative-tim.com
+                                            </p>-->
+                                        </div>
+                                      </div>
+                                    </router-link>
                                 </td>
                                 <td>
                                     <p class="text-xs font-weight-bold mb-0">{{item.rewards}}</p>
                                 </td>
                                 <td class="align-middle">
-                                    <a
-                                    href="javascript:;"
+                                    <a href="#"
                                     class="text-secondary font-weight-bold text-xs"
                                     data-toggle="tooltip"
                                     data-original-title="Edit user"
-                                    >Copy</a
                                     >
+                                    View
+                                    <span>
+                                      <i class="fa fa-close"></i>
+                                    </span>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
@@ -120,7 +125,6 @@
 </template>    
 <script>
 //import gql from 'graphql-tag'
-import { useQuery, useResult } from "@vue/apollo-composable"
 import { TOTAL_REWARDS } from "../graphql-operations/total_rewards"
 import MiniStatisticsCard from "@/examples/Cards/MiniStatisticsCard.vue";
 import img1 from "../assets/img/team-2.jpg"
@@ -133,15 +137,21 @@ export default {
     data(){
         return {
             img1,
-            contracts_rewards:[],
+            total_rewads:[],
+            //contracts_rewards:[],
             iconBackground: "bg-gradient-success"
         };
     },
     mounted(){
-    const privateTodosQuery = useQuery(TOTAL_REWARDS)
+    /*const privateTodosQuery = useQuery(TOTAL_REWARDS)
+    console.log(privateTodosQuery.result)
     const privateTodos = useResult(privateTodosQuery.result, [], (data) => data)
     this.contracts_rewards = privateTodos.value.total_rewads
-    console.log(this.contracts_rewards)
-  }
+    console.log(this.contracts_rewards)*/
+  },
+  apollo: {
+    // Apollo specific options
+    total_rewads: TOTAL_REWARDS
+  },
 }
 </script>
