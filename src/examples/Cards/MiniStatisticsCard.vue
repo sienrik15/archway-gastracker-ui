@@ -29,7 +29,7 @@
                   : value.text
               }}
               <span
-                class="text-sm font-weight-bolder"
+                class="text-xs font-weight-bolder"
                 :class="percentage.color"
               >
                 {{

@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
         <mini-statistics-card
-          title="Today's Money"
-          value="$53,000"
+          title="Today Rewards"
+          :value="rewards_sum"
           :percentage="{
             value: '+505%',
             color: 'text-success',
@@ -18,8 +18,8 @@
       </div>
       <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
         <mini-statistics-card
-          title="Today's Users"
-          value="2,300"
+          title="Today dApps"
+          :value='total_rewads.length'
           :percentage="{
             value: '+3%',
             color: 'text-success',
@@ -137,17 +137,27 @@ export default {
     data(){
         return {
             img1,
+            rewards_sum:0,
             total_rewads:[],
             //contracts_rewards:[],
             iconBackground: "bg-gradient-success"
         };
     },
     mounted(){
+      this.get_total_rewards()  
     /*const privateTodosQuery = useQuery(TOTAL_REWARDS)
     console.log(privateTodosQuery.result)
     const privateTodos = useResult(privateTodosQuery.result, [], (data) => data)
     this.contracts_rewards = privateTodos.value.total_rewads
     console.log(this.contracts_rewards)*/
+  },
+  methods:{
+    get_total_rewards(){
+      this.total_rewads.forEach(el => {
+        this.rewards_sum+=el.rewards
+        console.log(el.rewards)
+      });
+    },
   },
   apollo: {
     // Apollo specific options

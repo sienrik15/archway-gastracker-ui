@@ -423,108 +423,76 @@
       <div class="col-12">
         <div class="mb-4 card">
           <div class="p-3 pb-0 card-header">
-            <h6 class="mb-1">Projects</h6>
-            <p class="text-sm">Architects design houses</p>
+            <h6 class="mb-1">Historial Rewards</h6>
+            <p class="text-xs">Can filter rewards over different time periods (daily, monthly, custom)</p>
           </div>
-          <div class="p-3 card-body">
-            <div class="row">
-              <default-project-card
-                title="Modern"
-                :image="img1"
-                label="Project #2"
-                description="As Uber works through a huge amount of internal
-                management turmoil."
-                :authors="[
-                  {
-                    image: team1,
-                    name: 'Elena Morison',
-                  },
-                  {
-                    image: team2,
-                    name: 'Ryan Milly',
-                  },
-                  {
-                    image: team3,
-                    name: 'Nick Daniel',
-                  },
-                  {
-                    image: team4,
-                    name: 'Peterson',
-                  },
-                ]"
-                :action="{
-                  color: 'success',
-                  label: 'View Project',
-                }"
-              />
-
-              <default-project-card
-                title="Scandinavian"
-                :image="img2"
-                label="Project #1"
-                description="Music is something that every person has his or her own
-                      specific opinion about."
-                :authors="[
-                  {
-                    image: team3,
-                    name: 'Nick Daniel',
-                  },
-                  {
-                    image: team4,
-                    name: 'Peterson',
-                  },
-                  {
-                    image: team1,
-                    name: 'Elena Morison',
-                  },
-                  {
-                    image: team2,
-                    name: 'Ryan Milly',
-                  },
-                ]"
-                :action="{
-                  color: 'success',
-                  label: 'View Project',
-                }"
-              />
-
-              <default-project-card
-                title="Minimalist"
-                :image="img3"
-                label="Project #3"
-                description="Different people have different taste, and various types
-                      of music."
-                :authors="[
-                  {
-                    image: team4,
-                    name: 'Peterson',
-                  },
-                  {
-                    image: team3,
-                    name: 'Nick Daniel',
-                  },
-                  {
-                    image: team1,
-                    name: 'Elena Morison',
-                  },
-                  {
-                    image: team2,
-                    name: 'Ryan Milly',
-                  },
-                ]"
-                :action="{
-                  color: 'success',
-                  label: 'View Project',
-                }"
-              />
-
-              <div class="mb-4 col-xl-3 col-md-6 mb-xl-0">
-                <place-holder-card
-                  :title="{ text: 'New project', variant: 'h5' }"
-                />
-              </div>
+          <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                        <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            Contract
+                        </th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                            Rewards
+                        </th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                            inflation
+                        </th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                            height
+                        </th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                            Gas consumed
+                        </th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                            Date
+                        </th>
+                        <th class="text-secondary opacity-7"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item, index) in block" :key="index">
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <div class="mb-0 text-sm">{{item.join_block_reawards[0].contract}}</div>
+                                        <!--<p class="text-xs text-secondary mb-0">
+                                        laurent@creative-tim.com
+                                        </p>-->
+                                    </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{item.join_block_reawards[0].rewards}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{item.join_block_reawards[0].inflation}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{item.join_block_reawards[0].height}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{item.join_block_reawards[0].gas_consumed}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{item.timestamp}}</p>
+                                </td>
+                                <!--<td class="align-middle">
+                                    <a
+                                    href="javascript:;"
+                                    class="text-secondary font-weight-bold text-xs"
+                                    data-toggle="tooltip"
+                                    data-original-title="Edit user"
+                                    >Copy</a
+                                    >
+                                </td>-->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
@@ -535,7 +503,8 @@
 //import VsudSwitch from "@/components/VsudSwitch.vue";
 //import ProfileInfoCard from "./components/ProfileInfoCard.vue";
 //import VsudAvatar from "@/components/VsudAvatar.vue";
-import { TOTAL_REWARDS_FILTER } from "../graphql-operations/total_rewards"
+import moment from "moment"
+import { TOTAL_REWARDS_FILTER, REWARDS_DATE_FILTER } from "../graphql-operations/total_rewards"
 import sophie from "@/assets/img/kal-visuals-square.jpg";
 import marie from "@/assets/img/marie.jpg";
 import ivana from "@/assets/img/ivana-square.jpg";
@@ -553,8 +522,8 @@ import {
   faTwitter,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-import DefaultProjectCard from "./components/DefaultProjectCard.vue";
-import PlaceHolderCard from "@/examples/Cards/PlaceHolderCard.vue";
+//import DefaultProjectCard from "./components/DefaultProjectCard.vue";
+//import PlaceHolderCard from "@/examples/Cards/PlaceHolderCard.vue";
 import setNavPills from "@/assets/js/nav-pills.js";
 import setTooltip from "@/assets/js/tooltip.js";
 
@@ -564,8 +533,8 @@ export default {
     //VsudSwitch,
     //ProfileInfoCard,
     //VsudAvatar,
-    DefaultProjectCard,
-    PlaceHolderCard,
+    //DefaultProjectCard,
+    //PlaceHolderCard,
   },
   data() {
     return {
@@ -585,6 +554,9 @@ export default {
       },
       contract_metadata:{},
       total_rewads:[],
+      start_date:(new Date("2022-04-25T00:00").getTime()/1000),
+      finish_date:(new Date("2022-04-27T00:00").getTime()/1000),
+      block:{},
       showMenu: false,
       sophie,
       marie,
@@ -605,7 +577,7 @@ export default {
   },
 
   mounted() {
-    var url_contract_info = 'https://api.torii-1.archway.tech/cosmwasm/wasm/v1/contract/'
+    var url_contract_info = "https://api.torii-1.archway.tech/cosmwasm/wasm/v1/contract/"
     var url_metadata = "https://api.torii-1.archway.tech/archway/gastracker/v1/contract/metadata/"
     var url_balances = "https://api.torii-1.archway.tech/cosmos/bank/v1beta1/balances/"
 
@@ -631,19 +603,19 @@ export default {
     .then(response => response.json())
     .then((result) => {
         this.contract_metadata = result.metadata
-        console.log(this.contract_metadata)
     })
     .then(()=>{
         fetch(url_balances+this.contract_metadata.reward_address+"/by_denom?denom=utorii", requestOptions)
         .then(response => response.json())
         .then((result) => {
-            
             this.contract_balances = result.balance
-            console.log(this.contract_balances)
         })
         .catch(error => console.log('error', error));
     })
     .catch(error => console.log('error', error))
+    //console.log(moment("2022-04-17 02:11:10.823527").format("YYYY-MM-DD HH:mm:ss.SSS"))
+    //console.log(moment("2022-04-17 02:11:10.823527").utcOffset(0, true).format())
+    //console.log((new Date("2022-04-17T02:11:10.823527")).toISOString())
   },
   apollo: {
     // Apollo specific options
@@ -655,6 +627,16 @@ export default {
                 contract_id: this.contract_id
             }
         } 
+    },
+    block:{
+        query: REWARDS_DATE_FILTER,
+        variables(){
+            return{
+                contract_id:this.contract_id,
+                start_date: new moment("2022-04-23T17:13:57.675303").format("YYYY-MM-DD HH:mm:ss.SSS"),
+                finish_date: new moment("2022-04-23T17:14:16.14622").format("YYYY-MM-DD HH:mm:ss.SSS"),
+            }
+        }
     }
   },
   beforeUnmount() {

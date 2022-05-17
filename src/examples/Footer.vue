@@ -9,17 +9,16 @@
           >
             ©
             {{ new Date().getFullYear() }}, made with
-            <i class="fa fa-heart"></i> by
+            <i class="fa fa-heart"></i> to
             <a
-              href="https://www.creative-tim.com"
+              href="#"
               class="font-weight-bold"
               target="_blank"
-              >Creative Tim</a
+              > Archway Chain </a
             >
-            for a better web.
           </div>
         </div>
-        <div class="col-lg-6">
+        <!--<div class="col-lg-6">
           <ul
             class="nav nav-footer justify-content-center justify-content-lg-end"
           >
@@ -56,7 +55,7 @@
               >
             </li>
           </ul>
-        </div>
+        </div>-->
       </div>
     </div>
   </footer>
