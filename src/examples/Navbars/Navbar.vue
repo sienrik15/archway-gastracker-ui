@@ -12,7 +12,7 @@
         :class="this.$store.state.isRTL ? 'px-0' : 'me-sm-4'"
         id="navbar"
       >
-        <div
+        <!--<div
           class="pe-md-3 d-flex align-items-center"
           :class="this.$store.state.isRTL ? 'me-md-auto' : 'ms-md-auto'"
         >
@@ -28,7 +28,7 @@
               "
             />
           </div>
-        </div>
+        </div>-->
         <ul class="navbar-nav justify-content-end">
           <!--<li>
             <router-link
@@ -82,10 +82,10 @@
               <i class="cursor-pointer fa fa-cog fixed-plugin-button-nav"></i>
             </a>
           </li>-->
-          <li
-            class="nav-item px-3 dropdown d-flex align-items-center"
-            :class="this.$store.state.isRTL ? 'ps-2' : 'pe-2'"
-          >
+          <!--<li
+              class="nav-item px-3 dropdown d-flex align-items-center"
+              :class="this.$store.state.isRTL ? 'ps-2' : 'pe-2'"
+            >
             <a
               href="#"
               class="p-0 nav-link"
@@ -207,7 +207,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li>-->
         </ul>
       </div>
     </div>

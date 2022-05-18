@@ -1,6 +1,3 @@
-/**
-*/
-
 //import { createApp, provide, h } from "vue"
 import { createApp, h } from "vue"
 import App from "./App.vue";
@@ -14,6 +11,7 @@ import { ApolloClient, createHttpLink, InMemoryCache, concat } from '@apollo/cli
 import { setContext } from '@apollo/client/link/context'
 
 import { createApolloProvider } from '@vue/apollo-option'
+import { DataTable } from "@jobinsjp/vue3-datatable"
 
 // Create an http link:
 // 
@@ -55,4 +53,5 @@ appInstance.use(apolloProvider);
 appInstance.use(store);
 appInstance.use(router);
 appInstance.use(SoftUIDashboard);
+appInstance.use(DataTable);
 appInstance.mount("#app");

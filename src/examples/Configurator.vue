@@ -1,6 +1,6 @@
 <template>
   <div class="fixed-plugin">
-    <a
+    <!--<a
       class="px-3 py-2 fixed-plugin-button text-dark position-fixed"
       @click="toggle"
     >
@@ -17,11 +17,11 @@
             <i class="fa fa-close"></i>
           </button>
         </div>
-        <!-- End Toggle Button -->
+        
       </div>
       <hr class="my-1 horizontal dark" />
       <div class="pt-0 card-body pt-sm-3">
-        <!-- Sidebar Backgrounds -->
+        
         <div>
           <h6 class="mb-0">Sidebar Colors</h6>
         </div>
@@ -62,7 +62,7 @@
             ></span>
           </div>
         </a>
-        <!-- Sidenav Type -->
+        
         <div class="mt-3">
           <h6 class="mb-0">Sidenav Type</h6>
           <p class="text-sm">Choose between 2 different sidenav types.</p>
@@ -88,7 +88,7 @@
         <p class="mt-2 text-sm d-xl-none d-block">
           You can change the sidenav type just on desktop view.
         </p>
-        <!-- Navbar Fixed -->
+        
         <div class="mt-3">
           <h6 class="mb-0">Navbar Fixed</h6>
         </div>
@@ -146,7 +146,7 @@
           </a>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 
@@ -186,8 +186,8 @@ export default {
         transparent.classList.add("disabled");
         white.classList.add("disabled");
       } else {
-        transparent.classList.remove("disabled");
-        white.classList.remove("disabled");
+        //transparent.classList.remove("disabled");
+        //white.classList.remove("disabled");
       }
     },
   },

@@ -1,10 +1,10 @@
 <template>
   <div class="py-4 container-fluid">
     <div class="row">
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
         <mini-statistics-card
           title="Today Rewards"
-          :value="rewards_sum"
+          :value="rewards_sum/(1000000)"
           :percentage="{
             value: '+505%',
             color: 'text-success',
@@ -16,7 +16,7 @@
           direction-reverse
         />
       </div>
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
         <mini-statistics-card
           title="Today dApps"
           :value='total_rewads.length'
@@ -31,7 +31,7 @@
           direction-reverse
         />
       </div>
-      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+      <!--<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
         <mini-statistics-card
           title="New Clients"
           value="+3,462"
@@ -60,7 +60,7 @@
           }"
           direction-reverse
         />
-    </div>
+      </div>-->
     </div> 
     <div class="row">
       <div class="col-12">
@@ -85,12 +85,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(item, index) in total_rewads" :key="index">
+                            <tr v-for="(item, index) in total_rewads" :key="index" class="hv_link">
                                 <td>
-                                    <router-link :to="{ name: 'Contract', params: { id: item.contract }}">
+                                    <router-link :to="{ name: 'Contract', params: { id: item.contract }}" class="font-weight-bold">
                                       <div class="d-flex px-2 py-1">
                                         <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-sm">{{item.contract}}</h6>
+                                            <h6 class="mb-0 text-sm sub_hv_link" >{{item.contract}}</h6>
                                             <!--<p class="text-xs text-secondary mb-0">
                                             laurent@creative-tim.com
                                             </p>-->
@@ -99,19 +99,20 @@
                                     </router-link>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{item.rewards}}</p>
+                                    <router-link :to="{ name: 'Contract', params: { id: item.contract }}"
+                                     class="text-xs font-weight-bold mb-0 sub_hv_link">{{item.rewards/(1000000)}}</router-link>
                                 </td>
                                 <td class="align-middle">
-                                    <a href="#"
-                                    class="text-secondary font-weight-bold text-xs"
+                                    <router-link :to="{ name: 'Contract', params: { id: item.contract }}"
+                                    class="text-secondary font-weight-bold text-xs sub_hv_link"
                                     data-toggle="tooltip"
                                     data-original-title="Edit user"
                                     >
                                     View
                                     <span>
-                                      <i class="fa fa-close"></i>
+                                      <i class="fa fa-solid fa-eye"></i>
                                     </span>
-                                    </a>
+                                    </router-link>
                                 </td>
                             </tr>
                         </tbody>
@@ -161,7 +162,25 @@ export default {
   },
   apollo: {
     // Apollo specific options
-    total_rewads: TOTAL_REWARDS
+    total_rewads:{
+      query: TOTAL_REWARDS,
+      //pollInterval: 10000,
+    },
   },
+  watch: {
+    total_rewads: {
+      handler() {
+        this.get_total_rewards()
+      }
+    }
+  }
 }
 </script>
+<style scoped>
+.hv_link:hover{
+  color: #2d6519 !important
+}
+.hv_link:hover .sub_hv_link{
+  color: #2d6519 !important
+}
+</style>

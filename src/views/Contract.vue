@@ -1,13 +1,14 @@
 <template>
   <div class="container-fluid">
     <div
-      class="mt-4 page-header min-height-200 border-radius-xl"
+      class="mt-4 page-header min-height-150 border-radius-xl"
       :style="{
         backgroundImage:
-          'url(' + require('@/assets/img/curved-images/curved14.jpg') + ')',
+        'url(' + require('@/assets/img/curved-images/curved14.jpg') + ')',
         backgroundPositionY: '50%',
       }"
     >
+      <!--<span class="mask bg-gradient-success bg-gradient-profile opacity-6"></span>-->
       <span class="mask bg-gradient-success opacity-6"></span>
     </div>
     <div class="mx-4 overflow-hidden card card-body blur shadow-blur mt-n6">
@@ -33,7 +34,7 @@
                     <h6 class="pt-2">Total Reward</h6>
                     <div>
                         <span>
-                            {{total_rewads[0]?total_rewads[0].rewards:"0"}}    
+                            {{total_rewads[0]?total_rewads[0].rewards/1000000:"0"}}    
                         </span>
                         <span class="px-1">
                             {{contract_balances.denom}}
@@ -44,7 +45,7 @@
                     <h6 class="pt-2">Active balances</h6>
                     <div>
                         <span>
-                            {{contract_balances.amount}}
+                            {{contract_balances.amount/1000000}}
                         </span>
                         <span class="px-1">
                             {{contract_balances.denom}}
@@ -52,6 +53,11 @@
                     </div>
                 </span>
             </p>
+            
+            <a href="#filter_rewards"  style="position: absolute; right: 35px; bottom: 23px;">
+              <span class="i_history_rewards" style="padding: 3px;" >History rewards</span>
+                <i style="font-size: 22px; color: #ffc06b;" class="fa fa-solid fa-filter-circle-dollar"></i>
+            </a>
             <!--<p class="mb-0 text-sm font-weight-bold">
                 <strong class="h6">Creator: </strong>
                 <span>{{contract_info.creator}}</span></p>
@@ -419,7 +425,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-4 row">
+    <div class="mt-4 row" id="filter_rewards">
       <div class="col-12">
         <div class="mb-4 card">
           <div class="p-3 pb-0 card-header">
@@ -427,7 +433,7 @@
             <p class="text-xs">Can filter rewards over different time periods (daily, monthly, custom)</p>
           </div>
           <div class="card-body px-0 pt-0 pb-2">
-                <div class="table-responsive p-0">
+                <!--<div class="table-responsive p-0">
                     <table class="table align-items-center mb-0">
                         <thead>
                         <tr>
@@ -458,17 +464,14 @@
                                     <div class="d-flex px-2 py-1">
                                     <div class="d-flex flex-column justify-content-center">
                                         <div class="mb-0 text-sm">{{item.join_block_reawards[0].contract}}</div>
-                                        <!--<p class="text-xs text-secondary mb-0">
-                                        laurent@creative-tim.com
-                                        </p>-->
                                     </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{item.join_block_reawards[0].rewards}}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{item.join_block_reawards[0].rewards/1000000}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{item.join_block_reawards[0].inflation}}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{item.join_block_reawards[0].inflation/1000000}}</p>
                                 </td>
                                 <td>
                                     <p class="text-xs font-weight-bold mb-0">{{item.join_block_reawards[0].height}}</p>
@@ -479,18 +482,12 @@
                                 <td>
                                     <p class="text-xs font-weight-bold mb-0">{{item.timestamp}}</p>
                                 </td>
-                                <!--<td class="align-middle">
-                                    <a
-                                    href="javascript:;"
-                                    class="text-secondary font-weight-bold text-xs"
-                                    data-toggle="tooltip"
-                                    data-original-title="Edit user"
-                                    >Copy</a
-                                    >
-                                </td>-->
                             </tr>
                         </tbody>
                     </table>
+                </div>-->
+                <div class="table-responsive px-3">
+                  <data-table :rows="block_filter" :loading="isLoading" top-pagination :pagination="pagination" striped sn @loadData="load_data"/>
                 </div>
             </div>
         </div>
@@ -517,6 +514,9 @@ import team1 from "@/assets/img/team-1.jpg";
 import team2 from "@/assets/img/team-2.jpg";
 import team3 from "@/assets/img/team-3.jpg";
 import team4 from "@/assets/img/team-4.jpg";
+//import { DataTable, TableBody, TableHead} from "../../../lib/DataTable"
+import { DataTable } from "@jobinsjp/vue3-datatable"
+
 import {
   faFacebook,
   faTwitter,
@@ -526,10 +526,11 @@ import {
 //import PlaceHolderCard from "@/examples/Cards/PlaceHolderCard.vue";
 import setNavPills from "@/assets/js/nav-pills.js";
 import setTooltip from "@/assets/js/tooltip.js";
-
 export default {
   name: "ProfileOverview",
   components: {
+    DataTable
+    //TableBody, TableHead, DataTable
     //VsudSwitch,
     //ProfileInfoCard,
     //VsudAvatar,
@@ -557,6 +558,13 @@ export default {
       start_date:(new Date("2022-04-25T00:00").getTime()/1000),
       finish_date:(new Date("2022-04-27T00:00").getTime()/1000),
       block:{},
+      block_aggregate:1000,
+      block_filter:[],
+      pagination:{},
+      limit_vl:10,
+      offset_vl:0,
+      query_page:0,
+      isLoading:true,
       showMenu: false,
       sophie,
       marie,
@@ -633,10 +641,60 @@ export default {
         variables(){
             return{
                 contract_id:this.contract_id,
-                start_date: new moment("2022-04-23T17:13:57.675303").format("YYYY-MM-DD HH:mm:ss.SSS"),
-                finish_date: new moment("2022-04-23T17:14:16.14622").format("YYYY-MM-DD HH:mm:ss.SSS"),
+                start_date: new moment().subtract(40, "days").format("YYYY-MM-DD HH:mm:ss.SSS"),
+                finish_date: new moment(new Date()).format("YYYY-MM-DD HH:mm:ss.SSS"),
+                limit_vl:this.limit_vl,
+                offset_vl:this.offset_vl
             }
+        },
+        result(result) {
+          this.block_aggregate = result.data.block_aggregate.aggregate.count
         }
+    },
+  },
+  watch: {
+    block: {
+      handler(now_block) {
+        var block_list = []
+        console.log(now_block)
+        now_block.forEach(element => {
+          var table_block={
+            //CONTRACT:element.join_block_reawards[0].contract,
+            REWARDS:element.join_block_reawards[0].rewards/1000000,
+            INFLATION:element.join_block_reawards[0].inflation/1000000,
+            HEIGHT:element.join_block_reawards[0].height,
+            'GAS CONSUMED':element.join_block_reawards[0].gas_consumed,
+            DATE:element.timestamp
+          }
+          block_list.push(table_block)
+        });
+        this.block_filter=block_list
+        this.isLoading = false
+        this.pagination = { per_page:this.limit_vl, page: this.query_page, total: this.block_aggregate }
+        //console.log(this.block_filter)
+        //console.log("pagination.value")
+        //console.log(this.pagination)
+        //console.log(pagination.value)
+      },
+      //deep: true,
+      //immediate: true
+    },
+    /*block_aggregate:{
+      handler(now_block_aggregate) {
+        console.log(now_block_aggregate)
+      }
+    }*/
+  },
+  methods:{
+    load_data(query){
+      //console.log(this.pagination)
+      //query.per_page
+      this.query_page = query.page
+      this.isLoading = true
+      this.limit_vl = parseInt(query.per_page)
+      this.offset_vl = (this.limit_vl*parseInt(query.page))-this.limit_vl 
+      this.pagination = { per_page:parseInt(query.per_page), page:parseInt(query.page), total: this.block_aggregate }
+      this.$apollo.queries.block.refetch()
     }
   },
   beforeUnmount() {
@@ -644,3 +702,12 @@ export default {
   },
 };
 </script>
+<style lang="css">
+
+.bg-gradient-profile{
+  background-image: linear-gradient(310deg, #ffffff 0%, #ff7777 100%);
+}
+.i_history_rewards:hover{
+  color: rgb(237 165 69) !important;
+}
+</style>

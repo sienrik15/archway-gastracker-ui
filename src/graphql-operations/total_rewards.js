@@ -18,8 +18,8 @@ export const TOTAL_REWARDS_FILTER = gql`
     }`
 
 export const REWARDS_DATE_FILTER = gql`
-    query block($contract_id: String!,$start_date:timestamp,$finish_date:timestamp){
-          block(limit: 15, where: {join_block_reawards: {contract: {_eq: $contract_id}}, timestamp: {_gte: $start_date, _lte: $finish_date}},order_by: {timestamp: desc}) {
+    query block_count($contract_id: String!,$start_date:timestamp,$finish_date:timestamp,$limit_vl:Int,$offset_vl:Int){
+          block(limit: $limit_vl,offset: $offset_vl, where: {join_block_reawards: {contract: {_eq: $contract_id}}, timestamp: {_gte: $start_date, _lte: $finish_date}},order_by: {timestamp: desc}) {
           hash
           height
           num_txs
@@ -33,6 +33,11 @@ export const REWARDS_DATE_FILTER = gql`
             id
             inflation
             rewards
+          }
+        }
+        block_aggregate(where: {join_block_reawards: {contract: {_eq: $contract_id}}, timestamp: {_gte: $start_date, _lte: $finish_date}},order_by: {timestamp: desc}){
+          aggregate {
+            count
           }
         }
       }`
