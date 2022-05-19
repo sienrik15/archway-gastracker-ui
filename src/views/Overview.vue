@@ -4,7 +4,7 @@
       <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
         <mini-statistics-card
           title="Today Rewards"
-          :value="rewards_sum/(1000000)+' uTORII'"
+          :value="rewards_sum/(1000000)+' TORII'"
           :percentage="{
             value: '+505%',
             color: 'text-success',
@@ -74,7 +74,7 @@
                   @click="refresh_contracts(is_checked)"
                   :checked='is_checked'
                   label-class="mb-0 text-body ms-3 text-truncate w-120"
-                  >Refresh 5s</vsud-switch
+                  >Refresh 10s</vsud-switch
                 >
             </div>
             <div class="card-body px-0 pt-0 pb-2">
@@ -88,7 +88,7 @@
                         <th
                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
                         >
-                            Rewards uTORII
+                            Rewards TORII
                         </th>
                         <th class="text-secondary opacity-7"></th>
                         </tr>
@@ -115,7 +115,7 @@
                                         <span v-else class="icon_coin-top"></span> 
                                      </div>
                                      <div class="p-1">
-                                       {{item.rewards/(1000000)}}
+                                       {{item.rewards/(1000000)}} TORII
                                      </div>
                                      </router-link>
                                 </td>
@@ -183,7 +183,7 @@ export default {
     refresh_contracts($event){
         this.is_checked = !$event
         if(this.is_checked){
-          this.$apollo.queries.total_rewads.startPolling(5000)
+          this.$apollo.queries.total_rewads.startPolling(10000)
         }else{
           this.$apollo.queries.total_rewads.stopPolling()
         }

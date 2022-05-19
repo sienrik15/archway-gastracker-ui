@@ -128,8 +128,8 @@ export default {
                     var table_block_rewards={
                         //CONTRACT:element.join_block_reawards[0].contract,
                         Contract:element.contract,
-                        Rewards:element.rewards/1000000,
-                        inflation:element.inflation/1000000,
+                        Rewards:element.rewards/1000000+" TORII",
+                        inflation:element.inflation/1000000+" TORII",
                         height:element.height,
                         'GAS CONSUMED':element.gas_consumed,
                     }

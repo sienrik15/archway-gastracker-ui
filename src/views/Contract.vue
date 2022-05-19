@@ -37,7 +37,8 @@
                             {{total_rewads[0]?total_rewads[0].rewards/1000000:"0"}}    
                         </span>
                         <span class="px-1">
-                            {{contract_balances.denom}}
+                            TORII 
+                            <!--{{contract_balances.denom}}-->
                         </span>
                     </div>
                 </span>
@@ -48,7 +49,8 @@
                             {{contract_balances.amount/1000000}}
                         </span>
                         <span class="px-1">
-                            {{contract_balances.denom}}
+                            TORII 
+                            <!--{{contract_balances.denom}}-->
                         </span>
                     </div>
                 </span>
@@ -660,8 +662,8 @@ export default {
         now_block.forEach(element => {
           var table_block={
             //CONTRACT:element.join_block_reawards[0].contract,
-            REWARDS:element.join_block_reawards[0].rewards/1000000,
-            INFLATION:element.join_block_reawards[0].inflation/1000000,
+            REWARDS:element.join_block_reawards[0].rewards/1000000+" TORII",
+            INFLATION:element.join_block_reawards[0].inflation/1000000+" TORII",
             HEIGHT:element.join_block_reawards[0].height,
             'GAS CONSUMED':element.join_block_reawards[0].gas_consumed,
             DATE:element.timestamp
