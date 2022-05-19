@@ -62,3 +62,9 @@ export default {
   },
 };
 </script>
+<style>
+.form-switch .form-check-input:checked {
+    border-color: rgb(99 210 48) !important;
+    background-color: rgb(88 205 50) !important;
+}
+</style>

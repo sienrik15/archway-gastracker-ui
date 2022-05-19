@@ -67,6 +67,15 @@
         <div class="card mb-4">
             <div class="card-header pb-0">
                 <h6>TOTAL CONTRACT REWARDS</h6>
+                <vsud-switch style="position:absolute; top: 21px; right: 25px;"
+                  id="refresh_5s"
+                  name="email"
+                  class="ps-0 ms-auto"
+                  @click="refresh_contracts(is_checked)"
+                  :checked='is_checked'
+                  label-class="mb-0 text-body ms-3 text-truncate w-120"
+                  >Refresh 5s</vsud-switch
+                >
             </div>
             <div class="card-body px-0 pt-0 pb-2">
                 <div class="table-responsive p-0">
@@ -79,7 +88,7 @@
                         <th
                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
                         >
-                            Rewards
+                            Rewards uTORII
                         </th>
                         <th class="text-secondary opacity-7"></th>
                         </tr>
@@ -100,7 +109,15 @@
                                 </td>
                                 <td>
                                     <router-link :to="{ name: 'Contract', params: { id: item.contract }}"
-                                     class="text-xs font-weight-bold mb-0 sub_hv_link">{{item.rewards/(1000000)}}</router-link>
+                                     class="text-xs font-weight-bold mb-0 sub_hv_link" style="display:flex"> 
+                                     <div>
+                                        <span v-if="item.rewards/(1000000)>=10000" class="icon_coin"></span> 
+                                        <span v-else class="icon_coin-top"></span> 
+                                     </div>
+                                     <div class="p-1">
+                                       {{item.rewards/(1000000)}}
+                                     </div>
+                                     </router-link>
                                 </td>
                                 <td class="align-middle">
                                     <router-link :to="{ name: 'Contract', params: { id: item.contract }}"
@@ -129,11 +146,13 @@
 import { TOTAL_REWARDS } from "../graphql-operations/total_rewards"
 import MiniStatisticsCard from "@/examples/Cards/MiniStatisticsCard.vue";
 import img1 from "../assets/img/team-2.jpg"
+import VsudSwitch from "@/components/VsudSwitch.vue";
 
 export default {
     name: "Overview",
     components: {
-        MiniStatisticsCard
+        MiniStatisticsCard,
+        VsudSwitch
     },
     data(){
         return {
@@ -141,7 +160,9 @@ export default {
             rewards_sum:0,
             total_rewads:[],
             //contracts_rewards:[],
-            iconBackground: "bg-gradient-success"
+            iconBackground: "bg-gradient-success",
+            is_pollInterval:null,
+            is_checked:false
         };
     },
     mounted(){
@@ -156,15 +177,29 @@ export default {
     get_total_rewards(){
       this.total_rewads.forEach(el => {
         this.rewards_sum+=el.rewards
-        console.log(el.rewards)
+        //console.log(el.rewards)
       });
     },
+    refresh_contracts($event){
+        this.is_checked = !$event
+        if(this.is_checked){
+          this.$apollo.queries.total_rewads.startPolling(5000)
+        }else{
+          this.$apollo.queries.total_rewads.stopPolling()
+        }
+        //this.$apollo.queries.startPolling(ms) / stopPolling()
+        console.log(this.is_checked)
+    }
   },
   apollo: {
     // Apollo specific options
     total_rewads:{
       query: TOTAL_REWARDS,
-      //pollInterval: 10000,
+      //pollInterval: this.is_pollInterval,
+      /*pollInterval() {
+        //reactive pollInterval.
+        return this.is_pollInterval
+      }*/
     },
   },
   watch: {
@@ -182,5 +217,23 @@ export default {
 }
 .hv_link:hover .sub_hv_link{
   color: #2d6519 !important
+}
+.icon_coin-top {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #FEBD17;
+  background-image: url("~@/assets/img/icons/noun-coin-top.svg") no-repeat center;
+  -webkit-mask: url("~@/assets/img/icons/noun-coin-top.svg") no-repeat center;
+  mask: url("~@/assets/img/icons/noun-coin-top.svg") no-repeat center;
+}
+.icon_coin {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #FEBD17;
+  background-image: url("~@/assets/img/icons/noun-coin.svg") no-repeat center;
+  -webkit-mask: url("~@/assets/img/icons/noun-coin.svg") no-repeat center;
+  mask: url("~@/assets/img/icons/noun-coin.svg") no-repeat center;
 }
 </style>
