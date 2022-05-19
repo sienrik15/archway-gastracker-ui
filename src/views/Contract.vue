@@ -649,6 +649,7 @@ export default {
         },
         result(result) {
           this.block_aggregate = result.data.block_aggregate.aggregate.count
+          this.isLoading = false
         }
     },
   },
@@ -656,7 +657,6 @@ export default {
     block: {
       handler(now_block) {
         var block_list = []
-        console.log(now_block)
         now_block.forEach(element => {
           var table_block={
             //CONTRACT:element.join_block_reawards[0].contract,

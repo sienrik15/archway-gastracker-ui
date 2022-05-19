@@ -4,7 +4,7 @@
       <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
         <mini-statistics-card
           title="Today Rewards"
-          :value="rewards_sum/(1000000)"
+          :value="rewards_sum/(1000000)+' uTORII'"
           :percentage="{
             value: '+505%',
             color: 'text-success',
