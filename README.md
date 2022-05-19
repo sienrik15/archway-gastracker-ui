@@ -1,12 +1,12 @@
 # Archway GasTracker
 
-###[Live Web](https://archway-rewards.web.app/)
+### [Live Web](https://archway-rewards.web.app/)
 
 This UI use [Vue-3](https://vuejs.org/) tecnology and apollo graphql
 This Web is build to participate Archway challenger
-Develop a binary gastracker service with [Go](https://go.dev/) tecnology
 
-- [Binary Gastracker](https://github.com/giansalex/archway-gastracker)
+Develop a binary gastracker service with [Go](https://go.dev/) tecnology
+#### [Binary Gastracker](https://github.com/giansalex/archway-gastracker)
 
 ### What's included
 
@@ -100,7 +100,7 @@ If you have questions or need help integrating the product please [contact us](#
 
 ## Licensing
 
-- Copyright 2021 [Disperze](#)
+- Copyright 2022 [Archway](https://archway.io/)
 
 ## Useful Links
 
