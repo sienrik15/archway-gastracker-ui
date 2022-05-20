@@ -80,5 +80,5 @@ At present, Chrome, Firefox and Safari
 
 - [Binary Gastracker](https://github.com/giansalex/archway-gastracker)
 
-- Copyright 2022 [Archway](https://archway.io/)
+- [Archway Docs](https://docs.archway.io/)
 
