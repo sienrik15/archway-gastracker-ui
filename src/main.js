@@ -5,7 +5,7 @@ import store from "./store";
 import router from "./router";
 import "./assets/css/nucleo-icons.css";
 import "./assets/css/nucleo-svg.css";
-import SoftUIDashboard from "./soft-ui-dashboard";
+import UIArchawayRewards from "./ui-archaway-rewards";
 
 import { ApolloClient, createHttpLink, InMemoryCache, concat } from '@apollo/client/core'
 import { setContext } from '@apollo/client/link/context'
@@ -52,6 +52,6 @@ const appInstance = createApp({
 appInstance.use(apolloProvider);
 appInstance.use(store);
 appInstance.use(router);
-appInstance.use(SoftUIDashboard);
+appInstance.use(UIArchawayRewards);
 appInstance.use(DataTable);
 appInstance.mount("#app");
