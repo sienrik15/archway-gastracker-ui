@@ -57,7 +57,7 @@
             </p>
             
             <a href="#filter_rewards"  style="position: absolute; right: 35px; bottom: 23px;">
-              <span class="i_history_rewards" style="padding: 3px;" >History rewards</span>
+              <span class="i_history_rewards" style="padding: 3px;" >Historical rewards</span>
                 <i style="font-size: 22px; color: #ffc06b;" class="fa fa-solid fa-filter-circle-dollar"></i>
             </a>
             <!--<p class="mb-0 text-sm font-weight-bold">
@@ -431,7 +431,7 @@
       <div class="col-12">
         <div class="mb-4 card">
           <div class="p-3 pb-0 card-header">
-            <h6 class="mb-1">Historial Rewards</h6>
+            <h6 class="mb-1">historical Rewards</h6>
             <p class="text-xs">Can filter rewards over different time periods (daily, monthly, custom)</p>
           </div>
           <div class="card-body px-0 pt-0 pb-2">
