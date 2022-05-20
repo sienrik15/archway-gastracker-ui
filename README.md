@@ -13,6 +13,16 @@ Component and Views Pages
 - Overview
 - dApp Profile
 
+The user can check a specific contract address to view various metrics:
+- Total rewards from contract
+- Active balances from rewards address
+- Total Rewards from ccontract
+- Metadata contract
+- Gas rebates
+- Inflation
+- Contract premiums
+- Balances and cosmwasm contract
+- Historical rewards from contract
 
 This UI use [Vue-3](https://vuejs.org/) tecnology and apollo graphql
 Develop a binary gastracker service with [Go](https://go.dev/) tecnology

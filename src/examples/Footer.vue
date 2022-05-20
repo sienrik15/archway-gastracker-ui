@@ -11,7 +11,7 @@
             {{ new Date().getFullYear() }}, made with
             <i class="fa fa-heart"></i> to
             <a
-              href="#"
+              href="https://archway.io/"
               class="font-weight-bold"
               target="_blank"
               > Archway Chain </a
