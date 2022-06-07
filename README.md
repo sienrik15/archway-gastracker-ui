@@ -26,7 +26,7 @@ The user can check a specific contract address to view various metrics:
 
 This UI use [Vue-3](https://vuejs.org/) tecnology and apollo graphql
 Develop a binary gastracker service with [Go](https://go.dev/) tecnology
-#### [Binary Gastracker](https://github.com/giansalex/archway-gastracker)
+#### [Binary Gastracker](https://github.com/sienrik15/-archway-gastracker)
 
 ### Scaffolder
 
@@ -88,7 +88,7 @@ At present, Chrome, Firefox and Safari
 
 ## Resources
 
-- [Binary Gastracker](https://github.com/giansalex/archway-gastracker)
+- [Binary Gastracker](https://github.com/sienrik15/-archway-gastracker)
 
 - [Archway Docs](https://docs.archway.io/)
 
